@@ -17,12 +17,12 @@ fun validateFileData(file: File): Boolean {
     return true
 }
 
-fun parseLawnMowersData(fileData : List<String>): List<LawnMower> {
+fun parseLawnMowersData(fileData: List<String>): List<LawnMower> {
     val lawnMowerList = mutableListOf<LawnMower>()
 
-    return fileData.
-    filterIndexed {index, _ -> index % 2 == 0}
-        .zip(fileData.filterIndexed {index, _ -> index % 2 == 1})
+    return fileData
+        .filterIndexed { index, _ -> index % 2 == 0 }
+        .zip(fileData.filterIndexed { index, _ -> index % 2 == 1 })
         .map { lawnMowerData ->
             val coordinates = lawnMowerData.first.split(" ")
             val actionsList = lawnMowerData.second.toCharArray()

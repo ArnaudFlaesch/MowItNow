@@ -3,8 +3,7 @@ import org.junit.jupiter.api.Test
 import utils.validateFileData
 import java.io.File
 
-
-class MainTests {
+class FileUtilsTests {
 
     @Test
     fun testValidateFile() {

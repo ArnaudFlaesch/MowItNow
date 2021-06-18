@@ -6,7 +6,6 @@ class Simulator(private val height: Int, val width: Int, val lawnMowers: List<La
     private val logger = LogManager.getLogger()
 
     fun initSimulator() {
-      logger.info(this.lawnMowers.size)
+        logger.info(this.lawnMowers.size)
     }
-
 }
