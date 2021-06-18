@@ -16,6 +16,4 @@ fun main(args: Array<String>) {
         val simulator = Simulator(mapHeight, mapWidth, parseLawnMowersData(lawnMowersData))
         simulator.initSimulator()
     }
-
 }
-
