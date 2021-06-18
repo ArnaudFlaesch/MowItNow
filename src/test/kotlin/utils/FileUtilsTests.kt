@@ -3,6 +3,7 @@ package utils
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.io.File
 
 class FileUtilsTests {
@@ -10,7 +11,16 @@ class FileUtilsTests {
     @Test
     fun testValidateFile() {
         val testFile = File(this::class.java.classLoader.getResource("mowitnow.txt").file)
-        assertTrue(validateFileData(testFile))
+        assertEquals(5, validateFileData(testFile).size)
+    }
+
+    @Test
+    fun testValidateFileErrorNoData() {
+        val testFile = File(this::class.java.classLoader.getResource("mowitnow-empty.txt").file)
+        val exception = assertThrows<Exception>({ "Devrait échouer à cause de l'absence de données dans le fichier" }) {
+            validateFileData(testFile)
+        }
+        assertEquals(exception.message, "Les données du fichier sont incomplètes")
     }
 
     @Test
