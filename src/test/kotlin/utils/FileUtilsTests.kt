@@ -1,6 +1,7 @@
+package utils
+
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import utils.validateFileData
 import java.io.File
 
 class FileUtilsTests {

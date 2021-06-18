@@ -18,8 +18,6 @@ fun validateFileData(file: File): Boolean {
 }
 
 fun parseLawnMowersData(fileData: List<String>): List<LawnMower> {
-    val lawnMowerList = mutableListOf<LawnMower>()
-
     return fileData
         .filterIndexed { index, _ -> index % 2 == 0 }
         .zip(fileData.filterIndexed { index, _ -> index % 2 == 1 })

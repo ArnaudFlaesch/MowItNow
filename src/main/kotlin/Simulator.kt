@@ -1,7 +1,7 @@
 import model.LawnMower
 import org.apache.logging.log4j.LogManager
 
-class Simulator(private val height: Int, val width: Int, val lawnMowers: List<LawnMower>) {
+class Simulator(private val height: Int, val width: Int, private val lawnMowers: List<LawnMower>) {
 
     private val logger = LogManager.getLogger()
 
