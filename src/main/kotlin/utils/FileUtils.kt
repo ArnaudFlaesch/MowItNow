@@ -17,7 +17,15 @@ fun validateFileData(file: File): Boolean {
     return true
 }
 
+fun parseFileData(file: File): List<String> {
+    val lineList = mutableListOf<String>()
+    file.bufferedReader().forEachLine { lineList.add(it) }
+    return lineList
+}
+
 fun parseLawnMowersData(fileData: List<String>): List<LawnMower> {
+    // Filtre la liste en deux liste distinctes contenant respectivement les coordonnées de chaque tondeuse et leurs actions.
+    // Les deux listes sont zippées pour pouvoir boucler et créer la liste des tondeuses.
     return fileData
         .filterIndexed { index, _ -> index % 2 == 0 }
         .zip(fileData.filterIndexed { index, _ -> index % 2 == 1 })
