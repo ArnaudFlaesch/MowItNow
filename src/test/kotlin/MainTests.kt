@@ -1,10 +1,14 @@
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
+import utils.validateFileData
+import java.io.File
+
 
 class MainTests {
 
     @Test
-    fun testMainMessage() {
-        assertEquals("Hello World !", getMessage())
+    fun testValidateFile() {
+        val testFile = File(this::class.java.classLoader.getResource("mowitnow.txt").file)
+        assertTrue(validateFileData(testFile))
     }
 }
