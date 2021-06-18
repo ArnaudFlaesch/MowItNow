@@ -6,6 +6,7 @@ val ktlint: Configuration by configurations.creating
 plugins {
     val kotlinVersion = "1.5.10"
 
+    jacoco
     kotlin("jvm") version kotlinVersion
     application
 }
@@ -25,6 +26,14 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }
 
 tasks.withType<KotlinCompile>() {
