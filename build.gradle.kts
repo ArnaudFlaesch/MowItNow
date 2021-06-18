@@ -13,6 +13,7 @@ plugins {
 
 group = "me.arnaud"
 version = "1.0"
+java.sourceCompatibility = JavaVersion.VERSION_16
 
 repositories {
     mavenCentral()
