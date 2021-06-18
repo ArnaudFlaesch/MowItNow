@@ -7,11 +7,11 @@ class Simulator(private val height: Int, val width: Int, private val lawnMowers:
     private val logger = LogManager.getLogger()
 
     fun initSimulator(): List<LawnMower> {
-        lawnMowers.forEachIndexed { index, lawnMower  ->
+        lawnMowers.forEachIndexed { index, lawnMower ->
             lawnMower.actionList.forEach { action ->
                 lawnMowers[index] = when (action) {
                     'G', 'D' -> changeLawnMowerDirection(lawnMower, action.toString())
-                    'A' ->  moveLawnMowerForward(lawnMower)
+                    'A' -> moveLawnMowerForward(lawnMower)
                     else -> throw Exception("Mouvement inconnu")
                 }
                 println(lawnMowers[index])
@@ -28,7 +28,7 @@ class Simulator(private val height: Int, val width: Int, private val lawnMowers:
     private fun moveLawnMowerForward(lawnMower: LawnMower): LawnMower {
         val newCoordinates = when (lawnMower.direction) {
             DirectionEnum.N -> Pair(lawnMower.coordX, lawnMower.coordY + 1)
-            DirectionEnum.E-> Pair(lawnMower.coordX + 1, lawnMower.coordY)
+            DirectionEnum.E -> Pair(lawnMower.coordX + 1, lawnMower.coordY)
             DirectionEnum.S -> Pair(lawnMower.coordX, lawnMower.coordY - 1)
             DirectionEnum.W -> Pair(lawnMower.coordX - 1, lawnMower.coordY)
         }
@@ -41,7 +41,4 @@ class Simulator(private val height: Int, val width: Int, private val lawnMowers:
         }
         return lawnMower
     }
-
-
-
 }

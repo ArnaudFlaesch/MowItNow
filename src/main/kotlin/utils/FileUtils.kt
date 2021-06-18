@@ -42,9 +42,11 @@ fun parseLawnMowersData(fileData: List<String>): MutableList<LawnMower> {
         .map { lawnMowerData ->
             val lawnMowerInfo = lawnMowerData.first.split(" ")
             val actionsList = lawnMowerData.second.toCharArray()
-            LawnMower(Integer.parseInt(lawnMowerInfo[0]),
+            LawnMower(
+                Integer.parseInt(lawnMowerInfo[0]),
                 Integer.parseInt(lawnMowerInfo[1]),
                 actionsList.toList(),
-                DirectionEnum.valueOf(lawnMowerInfo[2]))
+                DirectionEnum.valueOf(lawnMowerInfo[2])
+            )
         }.toMutableList()
 }

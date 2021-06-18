@@ -15,7 +15,6 @@ enum class DirectionEnum {
                 } else {
                     indexOfCurrentDirection - 1
                 }
-
             } else if (movement == "D") {
                 if (indexOfCurrentDirection == 3) {
                     0
