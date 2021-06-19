@@ -1,11 +1,12 @@
 import utils.chooseFile
 import utils.parseFileData
 import utils.parseLawnMowersData
+import utils.validateFileData
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     val selectedFile = chooseFile()
-    if (selectedFile != null) {
+    if (selectedFile != null && validateFileData(selectedFile)) {
         val fileData = parseFileData(selectedFile)
 
         val mapDimensions = fileData[0].split((" "))
