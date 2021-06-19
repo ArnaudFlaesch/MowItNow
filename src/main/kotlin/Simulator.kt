@@ -4,8 +4,6 @@ import org.apache.logging.log4j.LogManager
 
 class Simulator(private val height: Int, private val width: Int, private val lawnMowers: MutableList<LawnMower>) {
 
-    private val logger = LogManager.getLogger()
-
     fun initSimulator(): List<LawnMower> {
         lawnMowers.forEachIndexed { index, lawnMower ->
             lawnMower.actionList.forEach { action ->
