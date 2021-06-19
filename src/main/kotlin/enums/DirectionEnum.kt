@@ -9,11 +9,20 @@ enum class DirectionEnum {
     companion object {
         fun getNewDirection(currentDirection: DirectionEnum, movement: String): DirectionEnum {
             return if (movement == "G" || movement == "D") {
-                when (currentDirection) {
-                    N -> if (movement == "G") W else E
-                    E -> if (movement == "G") N else S
-                    S -> if (movement == "G") E else W
-                    W -> if (movement == "G") S else N
+                if (movement == "G") {
+                    when (currentDirection) {
+                        N -> W
+                        E -> N
+                        S -> E
+                        W -> S
+                    }
+                } else {
+                    when (currentDirection) {
+                        N -> E
+                        E -> S
+                        S -> W
+                        W -> N
+                    }
                 }
             } else {
                 throw Exception("Mouvement inconnu")
