@@ -14,7 +14,6 @@ class Simulator(private val height: Int, val width: Int, private val lawnMowers:
                     'A' -> moveLawnMowerForward(lawnMower)
                     else -> throw Exception("Mouvement inconnu")
                 }
-                println(lawnMowers[index])
             }
         }
         return lawnMowers
@@ -35,7 +34,8 @@ class Simulator(private val height: Int, val width: Int, private val lawnMowers:
         val isAnotherLawnMowerPresent = lawnMowers.singleOrNull {
             it.coordX == newCoordinates.first && it.coordY == newCoordinates.second
         }
-        if (isAnotherLawnMowerPresent == null && newCoordinates.first >= 0 && newCoordinates.second >= 0) {
+        if (isAnotherLawnMowerPresent == null && newCoordinates.first >= 0 && newCoordinates.second >= 0
+            && newCoordinates.first <= this.width && newCoordinates.second <= this.height) {
             lawnMower.coordX = newCoordinates.first
             lawnMower.coordY = newCoordinates.second
         }
