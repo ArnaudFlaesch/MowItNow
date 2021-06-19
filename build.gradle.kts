@@ -21,6 +21,7 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("stdlib"))
     implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
     implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
@@ -45,8 +46,35 @@ tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "15"
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs(
+                "src/main/kotlin/"
+            )
+        }
+    }
+}
+
+
+
 application {
     mainClass.set("MainKt")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = application.mainClass
+        attributes["Multi-Release"] = true
+    }
+    // To add all of the dependencies
+    from(sourceSets.main.get().output)
+
+    dependsOn(configurations.runtimeClasspath)
+    from ({
+        configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }
+    })
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 val outputDir = "${project.buildDir}/reports/ktlint/"
