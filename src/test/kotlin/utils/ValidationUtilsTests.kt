@@ -42,6 +42,15 @@ class ValidationUtilsTests {
     }
 
     @Test
+    fun testValidateLawnMowerDataFailMissingActions() {
+        val lawnMowersData = listOf("1 2", "GAGAGAGAA", "3 3 E")
+        val exception = assertThrows<Exception>({ "Devrait échouer à cause de l'absence de données dans le fichier" }) {
+            validateLawnMowersData(lawnMowersData)
+        }
+        assertEquals("Les données des tondeuses sont invalides.", exception.message)
+    }
+
+    @Test
     fun testValidateFileErrorWrongLawnMowerData() {
         val lawnMowersData = listOf("1 2", "GAGAGAGAA", "3 3 E", "GAGAGAGAA")
         val exception = assertThrows<Exception>({ "Devrait échouer à cause de l'absence de données dans le fichier" }) {
