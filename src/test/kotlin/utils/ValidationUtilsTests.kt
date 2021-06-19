@@ -43,6 +43,13 @@ class ValidationUtilsTests {
     }
 
     @Test
+    fun testValidateMapDataTooManyParams() {
+        val mapDataWrongParam = listOf("5", "5", "N")
+        val exception = assertThrows<Exception> { validateMapData(mapDataWrongParam) }
+        assertEquals("Les données de la carte sont invalides.", exception.message)
+    }
+
+    @Test
     fun testValidateLawnMowerDataFailMissingActions() {
         val lawnMowersData = listOf("1 2", "GAGAGAGAA", "3 3 E")
         val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData) }
