@@ -2,7 +2,7 @@ import enums.DirectionEnum
 import model.LawnMower
 import org.apache.logging.log4j.LogManager
 
-class Simulator(private val height: Int, val width: Int, private val lawnMowers: MutableList<LawnMower>) {
+class Simulator(private val height: Int, private val width: Int, private val lawnMowers: MutableList<LawnMower>) {
 
     private val logger = LogManager.getLogger()
 
