@@ -8,23 +8,16 @@ enum class DirectionEnum {
 
     companion object {
         fun getNewDirection(currentDirection: DirectionEnum, movement: String): DirectionEnum {
-            val indexOfCurrentDirection = values().indexOf(currentDirection)
-            val index = if (movement == "G") {
-                if (indexOfCurrentDirection == 0) {
-                    3
-                } else {
-                    indexOfCurrentDirection - 1
-                }
-            } else if (movement == "D") {
-                if (indexOfCurrentDirection == 3) {
-                    0
-                } else {
-                    indexOfCurrentDirection + 1
+            return if (movement == "G" || movement == "D") {
+                when (currentDirection) {
+                    N -> if (movement == "G") W else E
+                    E -> if (movement == "G") N else S
+                    S -> if (movement == "G") E else W
+                    W -> if (movement == "G") S else N
                 }
             } else {
                 throw Exception("Mouvement inconnu")
             }
-            return values()[index]
         }
     }
 }
