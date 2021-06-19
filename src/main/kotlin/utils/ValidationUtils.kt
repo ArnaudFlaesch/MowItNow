@@ -13,7 +13,16 @@ fun validateFileData(file: File): Boolean {
     }
 
     val mapData = fileData[0].split("\\s".toRegex())
+    validateMapData(mapData)
 
+    val lawnMowersData = fileData.filterIndexed { index, _ -> index != 0 }
+    validateLawnMowersData(lawnMowersData)
+
+    return true
+}
+
+@Throws(Exception::class)
+fun validateMapData(mapData: List<String>) {
     if (mapData.size < 2) {
         throw Exception("Les données de la carte sont incomplètes.")
     }
@@ -21,9 +30,10 @@ fun validateFileData(file: File): Boolean {
     if (mapData[0].toIntOrNull() == null || mapData[1].toIntOrNull() == null || mapData.size > 2) {
         throw Exception("Les données de la carte sont invalides.")
     }
+}
 
-    val lawnMowerData = fileData.filterIndexed { index, _ -> index != 0 }
-
+@Throws(Exception::class)
+fun validateLawnMowersData(lawnMowerData: List<String>) {
     /**
      *  Les lignes concernant les données des tondeuses doivent être un nombre pair
      *  car il y a une ligne pour les coordonnées et la position et une ligne pour les déplacements.
@@ -52,6 +62,4 @@ fun validateFileData(file: File): Boolean {
             }
         }
     }
-
-    return true
 }

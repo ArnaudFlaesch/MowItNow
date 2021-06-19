@@ -24,15 +24,6 @@ class ValidationUtilsTests {
     }
 
     @Test
-    fun testValidateFileErrorWrongMapData() {
-        val testFile = File(this::class.java.classLoader.getResource("mowitnow-wrongMapData.txt").file)
-        val exception = assertThrows<Exception>({ "Devrait échouer à cause de l'absence de données dans le fichier" }) {
-            validateFileData(testFile)
-        }
-        assertEquals("Les données de la carte sont incomplètes.", exception.message)
-    }
-
-    @Test
     fun testValidateFileErrorMissingMapData() {
         val testFile = File(this::class.java.classLoader.getResource("mowitnow-missingMapData.txt").file)
         val exception = assertThrows<Exception>({ "Devrait échouer à cause de l'absence de données dans le fichier" }) {
@@ -42,11 +33,20 @@ class ValidationUtilsTests {
     }
 
     @Test
-    fun testValidateFileErrorMissingLawnMowerData() {
-        val testFile = File(this::class.java.classLoader.getResource("mowitnow-wrongLawnMowerData.txt").file)
+    fun testValidateFileErrorWrongMapData() {
+        val mapData = listOf("5")
         val exception = assertThrows<Exception>({ "Devrait échouer à cause de l'absence de données dans le fichier" }) {
-            validateFileData(testFile)
+            validateMapData(mapData)
         }
-        assertEquals("L'action 0 de la tondeuse 0 est invalide.", exception.message)
+        assertEquals("Les données de la carte sont incomplètes.", exception.message)
+    }
+
+    @Test
+    fun testValidateFileErrorWrongLawnMowerActions() {
+        val lawnMowersData = listOf("1 2 N", "GAGAGAGAA", "3 3 E", "EEEE")
+        val exception = assertThrows<Exception>({ "Devrait échouer à cause de l'absence de données dans le fichier" }) {
+            validateLawnMowersData(lawnMowersData)
+        }
+        assertEquals("L'action 0 de la tondeuse 1 est invalide.", exception.message)
     }
 }
