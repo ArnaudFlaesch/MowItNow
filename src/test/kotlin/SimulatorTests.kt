@@ -51,7 +51,7 @@ class SimulatorTests {
 
         assertEquals(0, updatedLawnMowers[0].coordX)
         assertEquals(0, updatedLawnMowers[0].coordY)
-        assertEquals(DirectionEnum.W, updatedLawnMowers[0].direction)
+        assertEquals(DirectionEnum.S, updatedLawnMowers[0].direction)
 
         assertEquals(5, updatedLawnMowers[1].coordX)
         assertEquals(0, updatedLawnMowers[1].coordY)
