@@ -42,7 +42,7 @@ class SimulatorTests {
     @Test
     fun testSimulatorPreventOutOfBounds() {
         val lawnMowerList = mutableListOf(
-            LawnMower(0, 0, "DAAAAA".toList(), DirectionEnum.S),
+            LawnMower(0, 0, "DAAGAAA".toList(), DirectionEnum.S),
             LawnMower(5, 0, "GAAAAA".toList(), DirectionEnum.S),
             LawnMower(0, 1, "AAAAAA".toList(), DirectionEnum.N)
         )
