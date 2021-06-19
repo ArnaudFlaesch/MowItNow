@@ -42,7 +42,8 @@ fun validateFileData(file: File): Boolean {
         val lawnMowerInfo = lawnMower.first.split("\\s".toRegex())
         val lawnMowerActions = lawnMower.second.toCharArray()
         if (lawnMowerInfo.size < 3 || lawnMowerInfo[0].toIntOrNull() == null || lawnMowerInfo[1].toIntOrNull() == null ||
-            !possibleDirections.contains(lawnMowerInfo[2])) {
+            !possibleDirections.contains(lawnMowerInfo[2])
+        ) {
             throw Exception("Les données de la tondeuse $lawnMowerIndex sont invalides.")
         }
         lawnMowerActions.forEachIndexed { lawnMowerActionIndex, action ->
