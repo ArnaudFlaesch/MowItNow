@@ -29,10 +29,17 @@ class ValidationUtilsTests {
     }
 
     @Test
-    fun testValidateFileErrorWrongMapData() {
-        val mapData = listOf("5")
-        val exception = assertThrows<Exception> { validateMapData(mapData) }
+    fun testValidateMapDataMissingParam() {
+        val mapDataMissingParam = listOf("5")
+        val exception = assertThrows<Exception> { validateMapData(mapDataMissingParam) }
         assertEquals("Les données de la carte sont incomplètes.", exception.message)
+    }
+
+    @Test
+    fun testValidateMapDataWrongParam() {
+        val mapDataWrongParam = listOf("S", "5")
+        val exception = assertThrows<Exception> { validateMapData(mapDataWrongParam) }
+        assertEquals("Les données de la carte sont invalides.", exception.message)
     }
 
     @Test
