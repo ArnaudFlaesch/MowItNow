@@ -43,10 +43,12 @@ class SimulatorTests {
     fun testSimulatorPreventOutOfBounds() {
         val lawnMowerList = mutableListOf(
             LawnMower(0, 0, "DAAAAA".toList(), DirectionEnum.S),
-            LawnMower(5, 0, "GAAAAA".toList(), DirectionEnum.S)
+            LawnMower(5, 0, "GAAAAA".toList(), DirectionEnum.S),
+            LawnMower(0, 1, "AAAAAA".toList(), DirectionEnum.N)
         )
         val simulator = Simulator(5, 5, lawnMowerList)
         val updatedLawnMowers = simulator.initSimulator()
+        
         assertEquals(0, updatedLawnMowers[0].coordX)
         assertEquals(0, updatedLawnMowers[0].coordY)
         assertEquals(DirectionEnum.W, updatedLawnMowers[0].direction)
@@ -54,5 +56,9 @@ class SimulatorTests {
         assertEquals(5, updatedLawnMowers[1].coordX)
         assertEquals(0, updatedLawnMowers[1].coordY)
         assertEquals(DirectionEnum.E, updatedLawnMowers[1].direction)
+
+        assertEquals(0, updatedLawnMowers[2].coordX)
+        assertEquals(5, updatedLawnMowers[2].coordY)
+        assertEquals(DirectionEnum.N, updatedLawnMowers[2].direction)
     }
 }
