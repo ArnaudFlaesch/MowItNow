@@ -15,7 +15,7 @@ class Simulator(private val height: Int, private val width: Int, private val law
                     else -> throw Exception("Mouvement inconnu")
                 }
             }
-            logger.info("La tondeuse $index a terminé de se déplacer, sa direction est ${lawnMower.direction.name} et sa position ${lawnMower.coordX}/${lawnMower.coordY}")
+            logger.info(lawnMowerStatusMessage(lawnMower, index))
         }
         return lawnMowers
     }
@@ -65,5 +65,10 @@ class Simulator(private val height: Int, private val width: Int, private val law
 
     fun getLawnMowers(): List<LawnMower> {
         return this.lawnMowers
+    }
+
+    private fun lawnMowerStatusMessage(lawnMower: LawnMower, index: Int): String {
+        return "La tondeuse $index a terminé de se déplacer, sa direction est ${lawnMower.direction.name} \n" +
+            " et sa position X:${lawnMower.coordX} Y:${lawnMower.coordY}"
     }
 }

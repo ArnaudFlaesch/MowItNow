@@ -2,7 +2,7 @@
 <Configuration name="Log4j2Config" status="error">
     <Appenders>
         <Console name="Console">
-            <PatternLayout>
+            <PatternLayout charset="UTF-8">
                 <Pattern>%d %5p %c{1} %X %F:%L - %m%n</Pattern>
             </PatternLayout>
         </Console>
