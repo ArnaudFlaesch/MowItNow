@@ -9,7 +9,9 @@ class SimulatorTests {
     @Test
     fun testSimulator() {
         val testFile = File(this::class.java.classLoader.getResource("mowitnow.txt").file)
-        val updatedLawnMowers = initSimulator(testFile)
+        val simulator = initSimulator(testFile)
+        simulator.startSimulator()
+        val updatedLawnMowers = simulator.getLawnMowers()
 
         assertEquals(2, updatedLawnMowers.size)
 
@@ -47,7 +49,9 @@ class SimulatorTests {
             LawnMower(0, 1, "AAAAAA".toList(), DirectionEnum.N)
         )
         val simulator = Simulator(5, 5, lawnMowerList)
-        val updatedLawnMowers = simulator.startSimulator()
+        simulator.startSimulator()
+
+        val updatedLawnMowers = simulator.getLawnMowers()
 
         assertEquals(0, updatedLawnMowers[0].coordX)
         assertEquals(0, updatedLawnMowers[0].coordY)

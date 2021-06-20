@@ -5,7 +5,7 @@ import model.LawnMower
 import java.io.File
 import javax.swing.JFileChooser
 
-fun chooseFile(): File? {
+fun openSelectFileModal(): File? {
     val fileChooser = JFileChooser()
     return if (fileChooser.showDialog(null, "Choisissez un fichier") == JFileChooser.APPROVE_OPTION) {
         fileChooser.selectedFile

@@ -1,9 +1,11 @@
 import enums.DirectionEnum
 import model.LawnMower
+import org.apache.logging.log4j.LogManager
 
 class Simulator(private val height: Int, private val width: Int, private val lawnMowers: MutableList<LawnMower>) {
 
     private val logger = LogManager.getLogger()
+
     fun startSimulator(): List<LawnMower> {
         lawnMowers.forEachIndexed { index, lawnMower ->
             lawnMower.actionList.forEach { action ->
@@ -13,7 +15,7 @@ class Simulator(private val height: Int, private val width: Int, private val law
                     else -> throw Exception("Mouvement inconnu")
                 }
             }
-            println("La tondeuse $index a terminé de se déplacer, sa direction est ${lawnMower.direction.name} et sa position ${lawnMower.coordX}/${lawnMower.coordY}")
+            logger.info("La tondeuse $index a terminé de se déplacer, sa direction est ${lawnMower.direction.name} et sa position ${lawnMower.coordX}/${lawnMower.coordY}")
         }
         return lawnMowers
     }
@@ -59,5 +61,9 @@ class Simulator(private val height: Int, private val width: Int, private val law
             lawnMower.coordY = newCoordinates.second
         }
         return lawnMower
+    }
+
+    fun getLawnMowers(): List<LawnMower> {
+        return this.lawnMowers
     }
 }
