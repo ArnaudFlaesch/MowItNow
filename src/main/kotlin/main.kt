@@ -7,7 +7,7 @@ import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     val selectedFile = openSelectFileModal()
-    if (selectedFile != null && validateFileData(selectedFile)) {
+    if (selectedFile != null) {
         val simulator = initSimulator(selectedFile)
         simulator.startSimulator()
     } else {
@@ -15,13 +15,23 @@ fun main(args: Array<String>) {
     }
 }
 
+/**
+ * Valide le contenu d'un fichier choisi par l'utilisateur et crée la simulation
+ * à partir de ce contenu.
+ * @param file Le fichier contenant les données de la simulation.
+ * @return Un objet Simulator permettant de lancer et de récupérer les résultats de la simulation.
+ */
 fun initSimulator(file: File): Simulator {
-    val fileData = parseFileData(file)
+    if (validateFileData(file)) {
+        val fileData = parseFileData(file)
 
-    val mapDimensions = fileData[0].split((" "))
-    val mapHeight = Integer.parseInt(mapDimensions[0])
-    val mapWidth = Integer.parseInt(mapDimensions[1])
+        val mapDimensions = fileData[0].split((" "))
+        val mapHeight = Integer.parseInt(mapDimensions[0])
+        val mapWidth = Integer.parseInt(mapDimensions[1])
 
-    val lawnMowersData = fileData.filterIndexed { index, _ -> index != 0 }
-    return Simulator(mapHeight, mapWidth, parseLawnMowersData(lawnMowersData))
+        val lawnMowersData = fileData.filterIndexed { index, _ -> index != 0 }
+        return Simulator(mapHeight, mapWidth, parseLawnMowersData(lawnMowersData))
+    } else {
+        exitProcess(0)
+    }
 }
