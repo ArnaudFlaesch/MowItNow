@@ -4,8 +4,7 @@ import model.LawnMower
 class Simulator(private val height: Int, private val width: Int, private val lawnMowers: MutableList<LawnMower>) {
 
     private val logger = LogManager.getLogger()
-
-    fun initSimulator(): List<LawnMower> {
+    fun startSimulator(): List<LawnMower> {
         lawnMowers.forEachIndexed { index, lawnMower ->
             lawnMower.actionList.forEach { action ->
                 lawnMowers[index] = when (action) {
@@ -14,12 +13,32 @@ class Simulator(private val height: Int, private val width: Int, private val law
                     else -> throw Exception("Mouvement inconnu")
                 }
             }
+            println("La tondeuse $index a terminé de se déplacer, sa direction est ${lawnMower.direction.name} et sa position ${lawnMower.coordX}/${lawnMower.coordY}")
         }
         return lawnMowers
     }
 
-    private fun changeLawnMowerDirection(lawnMower: LawnMower, action: String): LawnMower {
-        lawnMower.direction = DirectionEnum.getNewDirection(lawnMower.direction, action)
+    private fun changeLawnMowerDirection(lawnMower: LawnMower, movement: String): LawnMower {
+        val newDirection = if (movement == "G" || movement == "D") {
+            if (movement == "G") {
+                when (lawnMower.direction) {
+                    DirectionEnum.N -> DirectionEnum.W
+                    DirectionEnum.E -> DirectionEnum.N
+                    DirectionEnum.S -> DirectionEnum.E
+                    DirectionEnum.W -> DirectionEnum.S
+                }
+            } else {
+                when (lawnMower.direction) {
+                    DirectionEnum.N -> DirectionEnum.E
+                    DirectionEnum.E -> DirectionEnum.S
+                    DirectionEnum.S -> DirectionEnum.W
+                    DirectionEnum.W -> DirectionEnum.N
+                }
+            }
+        } else {
+            throw Exception("Mouvement inconnu")
+        }
+        lawnMower.direction = newDirection
         return lawnMower
     }
 

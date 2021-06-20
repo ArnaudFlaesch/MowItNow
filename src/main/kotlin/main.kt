@@ -24,5 +24,5 @@ fun initSimulator(file: File): List<LawnMower> {
 
     val lawnMowersData = fileData.filterIndexed { index, _ -> index != 0 }
     val simulator = Simulator(mapHeight, mapWidth, parseLawnMowersData(lawnMowersData))
-    return simulator.initSimulator()
+    return simulator.startSimulator()
 }

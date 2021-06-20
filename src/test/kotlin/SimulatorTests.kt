@@ -29,7 +29,7 @@ class SimulatorTests {
             LawnMower(5, 0, "DAAAAA".toList(), DirectionEnum.S)
         )
         val simulator = Simulator(5, 5, lawnMowerList)
-        val updatedLawnMowers = simulator.initSimulator()
+        val updatedLawnMowers = simulator.startSimulator()
         assertEquals(4, updatedLawnMowers[0].coordX)
         assertEquals(0, updatedLawnMowers[0].coordY)
         assertEquals(DirectionEnum.E, updatedLawnMowers[0].direction)
@@ -47,7 +47,7 @@ class SimulatorTests {
             LawnMower(0, 1, "AAAAAA".toList(), DirectionEnum.N)
         )
         val simulator = Simulator(5, 5, lawnMowerList)
-        val updatedLawnMowers = simulator.initSimulator()
+        val updatedLawnMowers = simulator.startSimulator()
 
         assertEquals(0, updatedLawnMowers[0].coordX)
         assertEquals(0, updatedLawnMowers[0].coordY)
