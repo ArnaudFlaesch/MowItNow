@@ -26,12 +26,15 @@ class SimulatorTests {
 
     @Test
     fun testSimulatorPreventCollisions() {
+        // Deux tondeuses allant chacune l'une vers l'autre tour à tour
         val lawnMowerList = mutableListOf(
             LawnMower(0, 0, "GAAAAA".toList(), DirectionEnum.S),
             LawnMower(5, 0, "DAAAAA".toList(), DirectionEnum.S)
         )
+
         val simulator = Simulator(5, 5, lawnMowerList)
         val updatedLawnMowers = simulator.startSimulator()
+
         assertEquals(4, updatedLawnMowers[0].coordX)
         assertEquals(0, updatedLawnMowers[0].coordY)
         assertEquals(DirectionEnum.E, updatedLawnMowers[0].direction)
@@ -43,11 +46,13 @@ class SimulatorTests {
 
     @Test
     fun testSimulatorPreventOutOfBounds() {
+        // Trois tondeuses se dirigeant vers les bords de la carte
         val lawnMowerList = mutableListOf(
             LawnMower(0, 0, "DAAGAAA".toList(), DirectionEnum.S),
             LawnMower(5, 0, "GAAAAA".toList(), DirectionEnum.S),
             LawnMower(0, 1, "AAAAAA".toList(), DirectionEnum.N)
         )
+
         val simulator = Simulator(5, 5, lawnMowerList)
         simulator.startSimulator()
 
