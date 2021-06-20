@@ -87,14 +87,14 @@ fun validateLawnMowersData(lawnMowerData: List<String>, mapWidth: Int, mapHeight
     lawnMowerList.forEachIndexed { lawnMowerIndex, lawnMower ->
         val lawnMowerInfo = lawnMower.first.split("\\s".toRegex())
         val lawnMowerActions = lawnMower.second.toCharArray()
-        if (lawnMowerInfo.size < 3
-            || lawnMowerInfo[0].toIntOrNull() == null
-            || lawnMowerInfo[1].toIntOrNull() == null
-            || lawnMowerInfo[0].toInt() < 0
-            || lawnMowerInfo[1].toInt() < 0
-            || lawnMowerInfo[0].toInt() > mapWidth
-            || lawnMowerInfo[1].toInt() > mapHeight
-            || !possibleDirections.contains(lawnMowerInfo[2])
+        if (lawnMowerInfo.size < 3 ||
+            lawnMowerInfo[0].toIntOrNull() == null ||
+            lawnMowerInfo[1].toIntOrNull() == null ||
+            lawnMowerInfo[0].toInt() < 0 ||
+            lawnMowerInfo[1].toInt() < 0 ||
+            lawnMowerInfo[0].toInt() > mapWidth ||
+            lawnMowerInfo[1].toInt() > mapHeight ||
+            !possibleDirections.contains(lawnMowerInfo[2])
         ) {
             throw Exception("Les données de la tondeuse $lawnMowerIndex sont invalides.")
         }
