@@ -30,7 +30,7 @@ fun initSimulator(file: File): Simulator {
         val mapWidth = Integer.parseInt(mapDimensions[1])
 
         val lawnMowersData = fileData.filterIndexed { index, _ -> index != 0 }
-        return Simulator(mapHeight, mapWidth, parseLawnMowersData(lawnMowersData))
+        return Simulator(mapHeight, mapWidth, parseLawnMowersData(lawnMowersData).toMutableList())
     } else {
         exitProcess(0)
     }

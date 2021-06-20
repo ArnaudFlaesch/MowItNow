@@ -6,6 +6,10 @@ class Simulator(private val height: Int, private val width: Int, private val law
 
     private val logger = LogManager.getLogger()
 
+    /**
+     * Exécute tour à tour la liste des actions de chaque tondeuse de la simulation.
+     * Après que chaque tondeuse ait fini de se déplacer, ses nouvelles coordonnées sont affichées.
+     */
     fun startSimulator(): List<LawnMower> {
         lawnMowers.forEachIndexed { index, lawnMower ->
             lawnMower.actionList.forEach { action ->
@@ -20,6 +24,13 @@ class Simulator(private val height: Int, private val width: Int, private val law
         return lawnMowers
     }
 
+    /**
+     * Détermine la nouvelle direction d'une tondeuse à partir de son mouvement (Gauche ou Droite)
+     * et retourne la tondeuse modifiée.
+     * @param lawnMower La tondeuse en cours de déplacement.
+     * @param movement L'action en cours.
+     * @return L'objet Tondeuse modifié.
+     */
     private fun changeLawnMowerDirection(lawnMower: LawnMower, movement: String): LawnMower {
         val newDirection = if (movement == "G" || movement == "D") {
             if (movement == "G") {
@@ -44,6 +55,13 @@ class Simulator(private val height: Int, private val width: Int, private val law
         return lawnMower
     }
 
+    /**
+     * Avance la tondeuse en fonction de sa direction et modifie ses coordonnées.
+     * Les coordonnées ne sont pas modifiées si elles dépassent la taille de la carte ou si
+     * une tondeuse se trouve déjà à cet endroit.
+     * @param lawnMower La tondeuse en cours de déplacement.
+     * @return L'objet Tondeuse avec éventuellement ses coordonnées modifiées.
+     */
     private fun moveLawnMowerForward(lawnMower: LawnMower): LawnMower {
         val newCoordinates = when (lawnMower.direction) {
             DirectionEnum.N -> Pair(lawnMower.coordX, lawnMower.coordY + 1)

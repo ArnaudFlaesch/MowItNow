@@ -50,23 +50,37 @@ class ValidationUtilsTests {
     }
 
     @Test
+    fun testValidateMapDataWrongSize() {
+        val mapDataWrongSize = listOf("-1", "-1")
+        val exception = assertThrows<Exception> { validateMapData(mapDataWrongSize) }
+        assertEquals("Les données de la carte sont invalides.", exception.message)
+    }
+
+    @Test
     fun testValidateLawnMowerDataFailMissingActions() {
         val lawnMowersData = listOf("1 2", "GAGAGAGAA", "3 3 E")
-        val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData) }
+        val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData, 5, 5) }
         assertEquals("Les données des tondeuses sont invalides.", exception.message)
     }
 
     @Test
     fun testValidateFileErrorWrongLawnMowerData() {
         val lawnMowersData = listOf("1 2", "GAGAGAGAA", "3 3 E", "GAGAGAGAA")
-        val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData) }
+        val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData, 5, 5) }
+        assertEquals("Les données de la tondeuse 0 sont invalides.", exception.message)
+    }
+
+    @Test
+    fun testValidateFileErrorLawnMowerDataOutOfBounds() {
+        val lawnMowersData = listOf("6 -1", "GAGAGAGAA")
+        val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData, 5, 5) }
         assertEquals("Les données de la tondeuse 0 sont invalides.", exception.message)
     }
 
     @Test
     fun testValidateFileErrorWrongLawnMowerActions() {
         val lawnMowersData = listOf("1 2 N", "GAGAGAGAA", "3 3 E", "EEEE")
-        val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData) }
+        val exception = assertThrows<Exception> { validateLawnMowersData(lawnMowersData, 5, 5) }
         assertEquals("L'action 0 de la tondeuse 1 est invalide.", exception.message)
     }
 }
