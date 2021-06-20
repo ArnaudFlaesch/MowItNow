@@ -1,5 +1,6 @@
 package utils
 
+import enums.DirectionEnum
 import java.io.File
 
 @Throws(Exception::class)
@@ -45,7 +46,7 @@ fun validateLawnMowersData(lawnMowerData: List<String>) {
     val lawnMowerList = lawnMowerData.filterIndexed { index, _ -> index % 2 == 0 }
         .zip(lawnMowerData.filterIndexed { index, _ -> index % 2 == 1 })
 
-    val possibleDirections = listOf("N", "E", "W", "S")
+    val possibleDirections = DirectionEnum.values().map { it.name }
     val possibleActions = listOf("A", "G", "D")
 
     lawnMowerList.forEachIndexed { lawnMowerIndex, lawnMower ->
